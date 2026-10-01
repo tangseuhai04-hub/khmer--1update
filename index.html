@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHMER-SHIRT | Luxury Khmer T-Shirts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo" onclick="showPage('store')">KHMER<span>-SHIRT</span></div>
+        
+        <nav class="nav-links" id="nav-links">
+            <a onclick="showPage('store')" id="nav-home" class="active">Home</a>
+            <a onclick="showPage('about')" id="nav-about">About</a>
+            <a onclick="showPage('pricing')" id="nav-pricing">ទិញសិទ្ធិលក់</a>
+            <a onclick="openLogin()">Admin Access</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-bar">
+                <span style="color: var(--primary-gold);">🔍</span>
+                <input type="text" placeholder="ស្វែងរក...">
+            </div>
+            <button class="icon-btn" onclick="showPage('chat')">💬</button>
+            <button class="icon-btn" onclick="showPage('account')">👤</button>
+            <button class="cart-btn" onclick="showPage('cart')">
+                🛒
+                <span class="cart-badge" id="cart-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- BOTTOM NAVIGATION (MOBILE ONLY) -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <a onclick="showPage('store')" id="bottom-nav-home" class="active">
+            <span class="icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a onclick="showPage('about')" id="bottom-nav-about">
+            <span class="icon">ℹ️</span>
+            <span>About</span>
+        </a>
+        <a onclick="showPage('pricing')" id="bottom-nav-pricing">
+            <span class="icon">💎</span>
+            <span>ទិញសិទ្ធិលក់</span>
+        </a>
+        <a onclick="openLogin()">
+            <span class="icon">🔒</span>
+            <span>Admin</span>
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        
+        <!-- 1. STORE VIEW -->
+        <div id="page-store" class="page-section active">
+            <div class="category-scroll" id="category-container">
+                <button class="pill active" data-category="all" onclick="filterCategory('all', this)">All Collection</button>
+                <button class="pill" data-category="traditional" onclick="filterCategory('traditional', this)">Khmer Traditional</button>
+                <button class="pill" data-category="angkor" onclick="filterCategory('angkor', this)">Angkor Wat</button>
+                <button class="pill" data-category="minimalist" onclick="filterCategory('minimalist', this)">Minimalist</button>
+                <button class="pill" data-category="oversized" onclick="filterCategory('oversized', this)">Oversized</button>
+                <button class="pill" data-category="limited" onclick="filterCategory('limited', this)">Limited Edition</button>
+            </div>
+
+            <div class="controls">
+                <div id="product-count">0 ITEMS</div>
+                <div class="sort-filter">
+                    <span>FILTER BY ▾</span>
+                    <span>SORT BY ▾</span>
+                </div>
+            </div>
+
+            <div id="store-display">
+                <div class="empty-state" id="empty-state">
+                    <h2>មិនទាន់មានទំនិញនៅក្នុងហាងនៅឡើយទេ</h2>
+                    <p>សូមបន្ថែមទំនិញដោយចុចលើ <span class="admin-link" onclick="openLogin()">Admin</span></p>
+                </div>
+                
+                <div class="product-grid" id="product-grid" style="display: none;">
+                    <!-- Products will be injected here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ABOUT VIEW -->
+        <div id="page-about" class="page-section">
+            <div class="about-content">
+                <h1>អំពី KHMER-SHIRT</h1>
+                <p>សូមស្វាគមន៍មកកាន់ KHMER-SHIRT ដែលជាហាងលក់អាវយឺតខ្មែរបែបប្រណិត (Luxury Khmer T-Shirts)។ យើងខ្ញុំមានមោទនភាពក្នុងការនាំយកវប្បធម៌ និងសិល្បៈខ្មែរដ៏អស្ចារ្យ មកបញ្ចូលក្នុងការរចនាសម្លៀកបំពាក់ទំនើប។</p>
+                <p>ផលិតផលរបស់យើងខ្ញុំត្រូវបានជ្រើសរើសយ៉ាងល្អិតល្អន់ ដោយប្រើប្រាស់ក្រណាត់គុណភាពខ្ពស់ និងការបោះពុម្ពដ៏ឈ្លាសវៃ ដើម្បីផ្តល់នូវភាពងាយស្រួល និងភាពប្រណិតដល់អ្នកពាក់។</p>
+                <p>យើងខ្ញុំសូមអរគុណយ៉ាងជ្រាលជ្រៅចំពោះការគាំទ្ររបស់លោកអ្នក។</p>
+            </div>
+        </div>
+
+        <!-- 3. PRICING VIEW -->
+        <div id="page-pricing" class="page-section">
+            <div class="section-title">
+                <h1>ជម្រើសទិញសិទ្ធិលក់</h1>
+                <p>ចាប់ផ្តើមអាជីវកម្មលក់អាវយឺតខ្មែរបែបប្រណិតរបស់អ្នកជាមួយ KHMER-SHIRT</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">១ ខែ</div>
+                    <div class="plan-duration">សាកល្បងប្រើប្រាស់រយៈពេលខ្លី</div>
+                    <div class="plan-price">$2<span>.00</span></div>
+                    <ul class="plan-features">
+                        <li>គ្រប់គ្រងផលិតផលមិនកំណត់</li>
+                        <li>បង្ហាញលើទំព័រដើម</li>
+                        <li>គាំទ្រពេញ ២៤ម៉ោង</li>
+                    </ul>
+                    <button class="btn-buy" onclick="buyPlan('១ ខែ', '$2.00')">ទិញឥឡូវនេះ</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="popular-badge">ពេញនិយម</div>
+                    <div class="plan-name">៦ ខែ</div>
+                    <div class="plan-duration">សន្សំសំចៃ និងលក់បានច្រើន</div>
+                    <div class="plan-price">$5<span>.00</span></div>
+                    <ul class="plan-features">
+                        <li>អ្វីៗគ្រប់យ៉ាងនៅក្នុងកញ្ចប់ ១ ខែ</li>
+                        <li>រចនាប័ទ្មហាងបែប Luxury</li>
+                        <li>គាំទ្រការកំណត់សិទ្ធិពិសេស</li>
+                    </ul>
+                    <button class="btn-buy" onclick="buyPlan('៦ ខែ', '$5.00')">ទិញឥឡូវនេះ</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="plan-name">១ ឆ្នាំ</div>
+                    <div class="plan-duration">សម្រាប់អាជីវកម្មធ្ងន់ធ្ងរ</div>
+                    <div class="plan-price">$9<span>.99</span></div>
+                    <ul class="plan-features">
+                        <li>អ្វីៗគ្រប់យ៉ាងនៅក្នុងកញ្ចប់ ៦ ខែ</li>
+                        <li>ឈ្មោះដែនកំណត់ផ្ទាល់ខ្លួន</li>
+                        <li>របាយការណ៍លក់លម្អិត</li>
+                    </ul>
+                    <button class="btn-buy" onclick="buyPlan('១ ឆ្នាំ', '$9.99')">ទិញឥឡូវនេះ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ACCOUNT VIEW -->
+        <div id="page-account" class="page-section">
+            <div class="full-page-header">
+                <h1>គណនីរបស់អ្នក</h1>
+                <p>គ្រប់គ្រងព័ត៌មានផ្ទាល់ខ្លួន និងការកំណត់របស់អ្នក</p>
+            </div>
+            <div class="account-container" id="account-container">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+
+        <!-- 5. CART VIEW -->
+        <div id="page-cart" class="page-section">
+            <div class="full-page-header">
+                <h1>កន្ត្រករបស់អ្នក</h1>
+                <p>ពិនិត្យមើលទំនិញរបស់អ្នកមុនពេលទូទាត់ប្រាក់</p>
+            </div>
+            <div class="cart-container" id="cart-container">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+
+        <!-- 6. CHAT VIEW -->
+        <div id="page-chat" class="page-section">
+            <div class="full-page-header">
+                <h1>ជជែកជាមួយម្ចាស់ហាង</h1>
+                <p>សួរព័ត៌មាន ឬជជែកជាមួយយើងខ្ញុំដោយផ្ទាល់</p>
+            </div>
+            <div class="chat-page-container">
+                <div class="chat-page-box" id="chat-page-box">
+                    <!-- Content will be injected by JavaScript -->
+                </div>
+                <div class="chat-page-input" id="chat-page-input-container">
+                    <input type="text" id="chat-page-input" placeholder="វាយសាររបស់អ្នកនៅទីនេះ..." onkeydown="if(event.key === 'Enter') sendMessageFromPage()">
+                    <button class="btn btn-save" onclick="sendMessageFromPage()" id="chat-send-btn">ផ្ញើ</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 1. LUXURY LOGIN MODAL (Admin) -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔒 Restricted Access</h3>
+                <button class="close-btn" onclick="closeLogin()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Enter Admin Password</label>
+                    <input type="password" id="admin-password" placeholder="••••••••" onkeydown="if(event.key === 'Enter') verifyPassword()">
+                    <div class="login-error" id="login-error">លេខកូដសម្ងាត់មិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeLogin()">Cancel</button>
+                <button class="btn btn-save" onclick="verifyPassword()">Unlock Editor</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. LUXURY ADMIN MODAL -->
+    <div class="modal-overlay" id="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✨ KHMER-SHIRT Atelier</h3>
+                <button class="close-btn" onclick="closeAdmin()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Product Name (Khmer)</label>
+                    <input type="text" id="input-title" placeholder="ឧ. អាវយឺតខ្មែរ" value="អាវយឺតខ្មែរ - សិល្បៈអង្គរ">
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="input-price" placeholder="15.00" value="15.00">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="input-category" class="form-select">
+                        <option value="traditional">Khmer Traditional</option>
+                        <option value="angkor">Angkor Wat</option>
+                        <option value="minimalist">Minimalist</option>
+                        <option value="oversized">Oversized</option>
+                        <option value="limited">Limited Edition</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+                    <input type="number" id="input-stock" placeholder="10" value="10">
+                </div>
+                <div class="form-group">
+                    <label>Upload T-Shirt Image</label>
+                    <div class="image-upload-area">
+                        <input type="file" id="input-image" accept="image/*" onchange="previewImage(event)">
+                        <span id="upload-text">Click to upload or drag and drop</span>
+                        <img id="image-preview" class="image-preview">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeAdmin()">Cancel</button>
+                <button class="btn btn-save" onclick="saveProduct()">Publish Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. PRODUCT DETAIL MODAL -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>🛍️ ព័ត៌មានលម្អិតផលិតផល</h3>
+                <button class="close-btn" onclick="closeProductModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-detail-flex">
+                    <img id="modal-product-image" src="" class="modal-product-image">
+                    <div class="modal-product-info">
+                        <h2 id="modal-product-title" class="modal-product-title"></h2>
+                        <p id="modal-product-price" class="modal-product-price"></p>
+                        
+                        <div class="stock-info">ស្តុកនៅសល់៖ <span id="modal-product-stock"></span></div>
+                        
+                        <label class="size-label">ជ្រើសរើសទំហំ (Size)</label>
+                        <div class="size-options" id="modal-size-options">
+                            <button class="size-btn" onclick="selectSize(this)">S</button>
+                            <button class="size-btn" onclick="selectSize(this)">M</button>
+                            <button class="size-btn" onclick="selectSize(this)">L</button>
+                            <button class="size-btn" onclick="selectSize(this)">XL</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-shop-info">
+                    <h5>ហាងហៃកំពង់ចាម</h5>
+                    <p>📍 កំពង់ចាម</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeProductModal()">បោះបង់</button>
+                <button class="btn btn-save" onclick="addToCartFromModal()">ដាក់ចូលកន្ត្រក</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
